@@ -140,38 +140,24 @@ public class Main
     public static boolean isBalanced ex_21(BinNode<Integer> t) 
     {
         if (t == null) 
-        {
             return true;
-        }
-    
         int leftHeight = heightex_27(t.getLeft());
         int rightHeight = heightex_27(t.getRight());
-        
         if (leftHeight - rightHeight > 1) 
-        {
             return false;
-        }
         if (rightHeight - leftHeight > 1) 
-        {
             return false;
-        }
         return isBalancedex_21(t.getLeft()) && isBalancedex_21(t.getRight());
     }
     
-    public static boolean numOfLeafs(BinNode<Integer> t)
-    {
-        if (t == null) 
-        {
-            return 0;
-        } 
-        
+    public static int numOfLeaves(BinNode<Integer> t)    {
+        if (t == null)         
+            return 0;        
         if (!t.hasleft() && !t.hasRight())
-        {
-            return 0;
-        }
-        int a = numOfLeafs(t.getLeft()); +1;
-        int b = numOfLeafs(t.getRight()); +1;
-        return a+b;
+            return 1;
+        int a = numOfLeaves(t.getLeft()) ;
+        int b = numOfLeaves(t.getRight()) ;
+        return a + b;
     }
     
     
@@ -223,13 +209,9 @@ public class Main
     
     public static boolean ex_26Per(BinNode<Integer> t)
     {
-        int a = heightex_27(t);
-        int b = numOfLeafs(t);
-        if (a*2==b)
-        {
-            return true;
-        }
-        return false;
+        int height = heightex_27(t);
+        int nLeaves = numOfLeaves(t);
+        return Math.pow(2, height) == nLeaves;
     }
     
     
